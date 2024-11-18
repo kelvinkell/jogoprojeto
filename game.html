@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Memória</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <h1>Jogo de Memória</h1>
+        <div id="timer">Tempo: <span id="time">0</span>s</div>
+        <div id="score-panel">
+            <div id="score">Pontuação: 0</div>
+            <div id="errors">Erros: 0</div>
+        </div>
+        <div id="manual">Regras do Jogo da Memória<br>
+            O objetivo do jogo é combinar pares de cartas, onde cada par consiste em uma imagem e seu conceito correspondente.<br>
+            
+            Objetivo: O jogador deve encontrar 8 pares de cartas corretamente combinados (imagem e conceito) antes de cometer 3 erros.<br>
+            
+            Botões:<br>
+            
+            Verificação: Após virar duas cartas, o jogador pode usar o botão de verificação para confirmar se as cartas formam um par correto.<br>
+            Reverter: O jogador pode usar o botão de reverter para desfazer a última jogada e virar as cartas novamente.<br>
+            Pontuação:<br>
+            
+            Cada par correto de cartas vale 1 ponto.<br>
+            O jogador pode atingir no máximo 8 pontos (8 pares encontrados corretamente).<br>
+            O jogador tem 3 tentativas erradas. Após 3 erros, o jogo termina.<br>
+            Fim de Jogo:<br>
+            
+            Vitória: Encontrar todos os 8 pares corretamente.<br>
+            Derrota: Cometer 3 erros.
+        </div>
+        <div class="game-board" id="game-board"></div>
+
+        <!-- Botões -->
+        <button id="start-button">Iniciar Jogo</button>
+        <button id="keep-button" disabled>Verificação!</button>
+        <button id="revert-button" disabled>Reverter Cartas</button>
+
+        <!-- Botão para ir para o outro arquivo -->
+        <button id="go-to-musica">Ir para o Jogo da Música</button>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

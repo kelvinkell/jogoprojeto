@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jogo de Memória - Início</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <h1>Bem-vindo ao Jogo de Memória!</h1>
+        <input type="text" id="player-name" placeholder="Digite seu nome" required>
+        <button id="start-game">Iniciar Jogo</button>
+        <button id="reset-ranking">Zerar Ranking</button> <!-- Novo botão -->
+        <div id="ranking">
+            <h2>Ranking</h2>
+            <ul id="ranking-list"></ul>
+        </div>
+    </div>
+
+    <script>
+        const players = JSON.parse(localStorage.getItem('players')) || [];
+        const playerNameInput = document.getElementById('player-name');
+
+        // Função para atualizar o ranking
+        function updateRanking() {
+            const rankingList = document.getElementById('ranking-list');
+            rankingList.innerHTML = '';
+            players.sort((a, b) => a.time - b.time).forEach(player => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${player.name}: ${player.time}s`;
+                rankingList.appendChild(listItem);
+            });
+        }
+
+        // Função para armazenar o nome do jogador
+        function savePlayerName(name) {
+            localStorage.setItem('currentPlayer', name);
+        }
+
+        // Função para mostrar o nome salvo, se existir
+        function displayPlayerName() {
+            const savedName = localStorage.getItem('currentPlayer');
+            if (savedName) {
+                playerNameInput.value = savedName;  // Preenche o campo de nome com o nome salvo
+            }
+        }
+
+        // Quando o jogo for iniciado
+        document.getElementById('start-game').addEventListener('click', () => {
+            const name = playerNameInput.value;
+            if (name) {
+                savePlayerName(name); // Salva o nome no localStorage
+                window.location.href = 'game.html'; // Redireciona para a página do jogo
+            } else {
+                alert('Por favor, insira seu nome.');
+            }
+        });
+
+        // Função para zerar o ranking
+        document.getElementById('reset-ranking').addEventListener('click', () => {
+            localStorage.removeItem('players'); // Remove os dados do ranking
+            updateRanking(); // Atualiza a lista do ranking
+            alert('Ranking zerado!');
+        });
+
+        // Chama a função para exibir o nome salvo na inicialização da página
+        displayPlayerName();
+
+        // Atualiza o ranking
+        updateRanking();
+    </script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete a Música - Projeto Sistemas</title>
+    <style>
+        /* Estilo para o corpo da página */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1e1e1e;
+            color: #ffffff;
+            margin: 0;
+            display: flex;
+            height: 100vh; /* Altura da tela */
+            width: 100vw; /* Largura da tela */
+            overflow: hidden; /* Impede rolagem */
+        }
+
+        /* Container para a música e a letra */
+        .music-container {
+            flex: 1; /* Ocupa metade da largura disponível */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            background: #2a2a2a;
+            border-right: 2px solid #4db6ac;
+            box-sizing: border-box;
+            height: 100%; /* Ocupa toda a altura disponível */
+        }
+
+        /* Container para as alternativas */
+        .options-container {
+            flex: 1; /* Ocupa metade da largura disponível */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: #333333;
+            padding: 40px;
+            box-sizing: border-box;
+            height: 100%; /* Ocupa toda a altura disponível */
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 3rem; /* Tamanho maior para tela cheia */
+            color: #4db6ac;
+        }
+
+        audio {
+            width: 80%; /* Ajuste a largura dos players */
+            margin-bottom: 20px;
+            border-radius: 10px;
+            outline: none;
+        }
+
+        p {
+            font-size: 2rem; /* Tamanho de fonte maior */
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .options button {
+            margin: 20px;
+            padding: 20px 30px;
+            font-size: 22px; /* Botões maiores */
+            border: none;
+            border-radius: 8px;
+            background-color: #00796b;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            width: 80%; /* Largura dos botões ajustada */
+            max-width: 350px;
+        }
+
+        .options button:hover {
+            background-color: #005b50;
+            transform: translateY(-3px);
+        }
+
+        #result {
+            margin-top: 30px;
+            font-size: 2.5rem; /* Tamanho maior para o resultado */
+            font-weight: bold;
+            animation: bounce 0.5s;
+            color: #ffeb3b;
+            text-align: center;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+    </style>
+</head>
+<body>
+<!-- Contêiner para a primeira música -->
+<div class="music-container">
+    <h1>Complete a Música - Evidências</h1>
+    <audio id="audio1" controls autoplay loop>
+        <!-- Caminho do primeiro arquivo de áudio -->
+        <source src="musica.mp3" type="audio/mpeg">
+        Seu navegador não suporta o elemento <code>audio</code>.
+    </audio>
+    <audio id="audio2" controls autoplay loop>
+        <!-- Caminho do segundo arquivo de áudio -->
+        <source src="musica1.MP3" type="audio/mpeg">
+    </audio>
+    <p>E nessa loucura de dizer<span id="blank">________</span>. Vou negando as aparências <span id="blank2">_________</span>.</p>
+</div>
+
+<!-- Contêiner para as alternativas -->
+<div class="options-container">
+    <div class="options">
+        <!-- Alternativas corrigidas -->
+        <button onclick="checkAnswer('que não te quero', 'disfarçando as evidências')">que não te quero / disfarçando as evidências</button>
+        <button onclick="checkAnswer('não vale a pena', 'te enganar')">não vale a pena / te enganar</button>
+        <button onclick="checkAnswer('por mais que eu tente', 'te afastar')">por mais que eu tente / te afastar</button>
+        <button onclick="checkAnswer('não consigo', 'te deixar')">não consigo / te deixar</button>
+    </div>
+    <p id="result"></p>
+</div>
+
+<script>
+    function checkAnswer(answer1, answer2) {
+        const correctAnswers = {
+            blank: 'que não te quero',
+            blank2: 'disfarçando as evidências',
+        };
+
+        // Verifica se as respostas estão corretas
+        if (answer1 === correctAnswers.blank && answer2 === correctAnswers.blank2) {
+            document.getElementById('result').textContent = "Correto! 🎉";
+            document.getElementById('blank').textContent = correctAnswers.blank;
+            document.getElementById('blank2').textContent = correctAnswers.blank2;
+        } else {
+            document.getElementById('result').textContent = "Tente novamente!";
+        }
+    }
+</script>
+</body>
+</html>
